@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هودي Brooklyn - متجر الهوديات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #000000; /* الأسود */
+            --secondary-color: #ffffff; /* الأبيض */
+            --accent-color: #f0f0f0;
+            --light-color: #f8f8f8;
+            --dark-color: #333333;
+            --text-color: #222222;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* الهيدر المحسن */
+        header {
+            background-color: var(--secondary-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            margin-left: 8px;
+            font-size: 22px;
+            color: var(--primary-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 6px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .back-btn {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* قسم تفاصيل المنتج */
+        .product-details {
+            padding: 30px 0;
+            background-color: var(--secondary-color);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .product-details-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #e0e0e0;
+        }
+
+        .main-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            font-weight: bold;
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .product-thumbnails {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 65px;
+            height: 65px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .thumbnail:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info-detailed h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            line-height: 1.3;
+            animation: slideInRight 0.8s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .product-brand {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 8px;
+            animation: slideInRight 0.8s ease 0.2s both;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .rating-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .product-price-detailed {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            animation: slideInRight 0.8s ease 0.4s both;
+        }
+
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.3rem;
+        }
+
+        .discount {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #666;
+            border-right: 3px solid var(--primary-color);
+            padding-right: 12px;
+            font-size: 0.95rem;
+            animation: slideInRight 0.8s ease 0.6s both;
+        }
+
+        .product-options {
+            margin-bottom: 20px;
+            animation: slideInRight 0.8s ease 0.8s both;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1rem;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.9rem;
+            background-color: var(--secondary-color);
+        }
+
+        .size-option.active, .size-option:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            animation: slideInRight 0.8s ease 1s both;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            background-color: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .quantity-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .product-actions-detailed {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            animation: slideInRight 0.8s ease 1.2s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        /* قسم طرق الدفع */
+        .payment-methods {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            animation: slideInRight 0.8s ease 1.4s both;
+            border: 1px solid #e0e0e0;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        .payment-methods h3 i {
+            color: var(--primary-color);
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .payment-icon {
+            width: 60px;
+            height: 38px;
+            background: var(--primary-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .payment-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        /* قسم معلومات الشحن */
+        .shipping-info {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            animation: slideInRight 0.8s ease 1.6s both;
+            border: 1px solid #e0e0e0;
+        }
+
+        .shipping-info h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        .shipping-info h3 i {
+            color: var(--primary-color);
+        }
+
+        .shipping-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .shipping-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid #e0e0e0;
+        }
+
+        .shipping-feature:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .shipping-feature i {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .shipping-feature strong {
+            font-size: 0.9rem;
+        }
+
+        .shipping-feature p {
+            color: #666;
+            margin-top: 3px;
+            font-size: 0.85rem;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 40px 0 15px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 35px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links i {
+            color: var(--secondary-color);
+            width: 18px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        /* السعر الإجمالي */
+        .total-price-container {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-right: 3px solid var(--primary-color);
+            box-shadow: var(--shadow);
+            animation: slideInRight 0.8s ease 0.2s both;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .total-price-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .total-price-value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .currency {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* تسمية الألوان */
+        .color-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .product-details-content {
+                gap: 25px;
+            }
+            
+            .main-image {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-details-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .main-image {
+                height: 300px;
+            }
+            
+            .product-actions-detailed {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .size-options {
+                justify-content: center;
+            }
+            
+            .navbar {
+                padding: 10px 0;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .logo i {
+                font-size: 20px;
+            }
+            
+            .nav-actions {
+                gap: 12px;
+            }
+            
+            .cart-icon {
+                font-size: 18px;
+            }
+            
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+            
+            .product-info-detailed h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-thumbnails {
+                flex-wrap: wrap;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .payment-icons {
+                justify-content: center;
+            }
+            
+            .shipping-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 8px 0;
+            }
+            
+            .nav-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .back-btn {
+                align-self: flex-start;
+            }
+            
+            .product-price-detailed {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .current-price {
+                font-size: 1.5rem;
+            }
+            
+            .old-price {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                width: 98%;
+                padding: 0 10px;
+            }
+            
+            .product-details {
+                padding: 20px 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .main-image {
+                height: 250px;
+            }
+            
+            .product-info-detailed h1 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .main-image {
+                height: 220px;
+            }
+            
+            .product-info-detailed h1 {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .quantity-btn, .quantity-input {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+            
+            .quantity-input {
+                width: 45px;
+            }
+            
+            .size-option {
+                width: 40px;
+                height: 40px;
+                font-size: 0.8rem;
+            }
+            
+            .nav-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            .logo {
+                font-size: 16px;
+            }
+            
+            .logo i {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .navbar {
+                gap: 8px;
+            }
+            
+            .nav-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
+            
+            .back-btn {
+                align-self: center;
+            }
+            
+            .main-image {
+                height: 200px;
+            }
+            
+            .product-info-detailed h1 {
+                font-size: 1.1rem;
+            }
+            
+            .current-price {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر المحسن -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-tshirt"></i>
+                    متجر الهوديات
+                </a>
+                
+                <div class="nav-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <a href="index.html" class="back-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        العودة
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم تفاصيل المنتج -->
+    <section class="product-details">
+        <div class="container">
+            <div class="product-details-content">
+                <div class="product-images">
+                    <div class="main-image">
+                        <div class="product-badge">خصم 25%</div>
+                        <!-- الصورة الرئيسية للمنتج -->
+                        <img src="images/hoodie-ofwite 1.webp" alt="هودي Brooklyn - اللون الأساسي" id="mainProductImage">
+                    </div>
+                    
+                    <!-- اختيار اللون عبر الصور المصغرة -->
+                    <div class="color-label">اختر اللون:</div>
+                    <div class="product-thumbnails" id="productThumbnails">
+                        <!-- سيتم إنشاء الصور المصغرة ديناميكياً بواسطة JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="product-info-detailed">
+                    <!-- معلومات المنتج -->
+                    <h1>هودي Brooklyn الكلاسيكي</h1>
+                    <div class="product-brand">NEW YORK - EST.1998</div>
+                    
+                    <!-- التقييم -->
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="rating-count">(4.5 - 128 تقييم)</div>
+                    </div>
+                    
+                    <!-- السعر الإجمالي -->
+                    <div class="total-price-container">
+                        <div class="total-price-label">السعر الإجمالي:</div>
+                        <div class="total-price-value">
+                            <span id="totalPrice">150</span>
+                            <span class="currency">درهم إماراتي</span>
+                        </div>
+                    </div>
+                    
+                    <!-- السعر الأساسي -->
+                    <div class="product-price-detailed">
+                        <span class="discount">25%</span>
+                        <span class="old-price">200 درهم</span>
+                        <span class="current-price" id="basePrice">150 درهم</span>
+                    </div>
+                    
+                    <!-- الوصف -->
+                    <p class="product-description">
+                        هودي Brooklyn الكلاسيكي من نيويورك منذ 1998. مصنوع من قماش قطني عالي الجودة مع بطانية داخلية ناعمة للراحة القصوى. 
+                        تصميم أنيق يناسب جميع المناسبات مع شعار Brooklyn الأصلي. مثالي للاستخدام اليومي في الطقس البارد.
+                    </p>
+                    
+                    <!-- خيارات المنتج -->
+                    <div class="product-options">
+                        <!-- المقاسات -->
+                        <div class="option-group">
+                            <label>اختر المقاس:</label>
+                            <div class="size-options">
+                                <div class="size-option active">S</div>
+                                <div class="size-option">M</div>
+                                <div class="size-option">L</div>
+                                <div class="size-option">XL</div>
+                                <div class="size-option">XXL</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- اختيار الكمية -->
+                    <div class="quantity-selector">
+                        <label style="font-weight: 600; color: var(--dark-color);">الكمية:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" id="decreaseQuantity">-</button>
+                            <input type="number" class="quantity-input" id="quantityInput" value="1" min="1">
+                            <button class="quantity-btn" id="increaseQuantity">+</button>
+                        </div>
+                    </div>
+                    
+                    <!-- أزرار الشراء -->
+                    <div class="product-actions-detailed">
+                        <a href="#" class="btn" id="addToCartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            أضف إلى السلة
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fas fa-bolt"></i>
+                            شراء الآن
+                        </a>
+                    </div>
+                    
+                    <!-- طرق الدفع -->
+                    <div class="payment-methods">
+                        <h3>
+                            <i class="fas fa-credit-card"></i>
+                            طرق الدفع المتاحة:
+                        </h3>
+                        <div class="payment-icons">
+                            <div class="payment-icon">تابي</div>
+                            <div class="payment-icon">تارا</div>
+                            <div class="payment-icon">بطاقة</div>
+                            <div class="payment-icon">التحويل</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- معلومات الشحن -->
+            <div class="shipping-info">
+                <h3>
+                    <i class="fas fa-shipping-fast"></i>
+                    معلومات الشحن والتوصيل
+                </h3>
+                <div class="shipping-features">
+                    <div class="shipping-feature">
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <strong>توصيل سريع</strong>
+                            <p>توصيل خلال 2-5 أيام عمل</p>
+                        </div>
+                    </div>
+                    <div class="shipping-feature">
+                        <i class="fas fa-shipping-fast"></i>
+                        <div>
+                            <strong>توصيل مجاني</strong>
+                            <p>للطلبات فوق 200 درهم</p>
+                        </div>
+                    </div>
+                    <div class="shipping-feature">
+                        <i class="fas fa-undo"></i>
+                        <div>
+                            <strong>إرجاع مجاني</strong>
+                            <p>خلال 14 يوم من الاستلام</p>
+                        </div>
+                    </div>
+                    <div class="shipping-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>ضمان الجودة</strong>
+                            <p>ضمان 100% على الجودة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>متجر الهوديات</h3>
+                    <p>متجر متخصص في توفير أفضل الهوديات بجودة عالية وتصميمات مميزة من أحدث الموديلات العالمية.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-home"></i> <a href="index.html">الرئيسية</a></li>
+                        <li><i class="fas fa-tshirt"></i> <a href="index.html#products">المنتجات</a></li>
+                        <li><i class="fas fa-shopping-cart"></i> <a href="cart.html">عربة التسوق</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +971 55 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@hoodies-store.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> دبي، الإمارات</li>
+                        <li><i class="fas fa-clock"></i> ٩ ص - ١١ م</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 متجر الهوديات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // كود JavaScript للتفاعل مع الصور والخيارات
+        document.addEventListener('DOMContentLoaded', function() {
+            // عناصر الصور
+            const mainImage = document.getElementById('mainProductImage');
+            const thumbnailsContainer = document.getElementById('productThumbnails');
+            
+            // عناصر السعر
+            const basePriceElement = document.getElementById('basePrice');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const quantityInput = document.getElementById('quantityInput');
+            const decreaseBtn = document.getElementById('decreaseQuantity');
+            const increaseBtn = document.getElementById('increaseQuantity');
+            const addToCartBtn = document.getElementById('addToCartBtn');
+            const cartCount = document.getElementById('cartCount');
+            
+            // السعر الثابت لجميع المقاسات (بالدرهم الإماراتي)
+            const fixedPrice = 150;
+            
+            // الألوان المتاحة مع صورها
+            const availableColors = [
+                {
+                    id: 'light-blue',
+                    name: 'ابيض مسفر',
+                    mainImage: 'images/hoodie-ofwite 1.webp',
+                    thumbnail: 'images/hoodie-ofwite 1.webp'
+                },
+                {
+                    id: 'black',
+                    name: 'أسود',
+                    mainImage: 'images/black-hoodie.webp',
+                    thumbnail: 'images/black-hoodie.webp'
+                },
+                {
+                    id: 'white',
+                    name: 'أبيض',
+                    mainImage: 'images/white-hoodie.webp',
+                    thumbnail: 'images/white-hoodie.webp'
+                },
+                {
+                    id: 'blue',
+                    name: 'أزرق',
+                    mainImage: 'images/blue-hoodie.webp',
+                    thumbnail: 'images/blue-hoodie.webp'
+                }
+            ];
+            
+            // اللون الحالي المختار
+            let currentColor = availableColors[0];
+            let currentSize = 'S';
+            let currentQuantity = 1;
+            
+            // إنشاء الصور المصغرة للألوان
+            function createColorThumbnails() {
+                thumbnailsContainer.innerHTML = '';
+                
+                availableColors.forEach((color, index) => {
+                    const thumbnail = document.createElement('div');
+                    thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                    thumbnail.setAttribute('data-color-id', color.id);
+                    
+                    const img = document.createElement('img');
+                    img.src = color.thumbnail;
+                    img.alt = `هودي Brooklyn - ${color.name}`;
+                    
+                    thumbnail.appendChild(img);
+                    thumbnailsContainer.appendChild(thumbnail);
+                    
+                    // إضافة حدث النقر على الصور المصغرة
+                    thumbnail.addEventListener('click', function() {
+                        // إزالة النشاط من جميع الصور المصغرة
+                        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                        
+                        // إضافة النشاط للصورة المحددة
+                        this.classList.add('active');
+                        
+                        // تغيير الصورة الرئيسية بناءً على اللون المختار
+                        const selectedColorId = this.getAttribute('data-color-id');
+                        currentColor = availableColors.find(color => color.id === selectedColorId);
+                        mainImage.src = currentColor.mainImage;
+                        mainImage.alt = `هودي Brooklyn - ${currentColor.name}`;
+                    });
+                });
+            }
+            
+            // تفعيل خيارات المقاس
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSize = this.textContent;
+                    
+                    // تحديث السعر الإجمالي بناءً على الكمية
+                    updateTotalPrice();
+                });
+            });
+            
+            // التحكم في الكمية
+            decreaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                    currentQuantity = value - 1;
+                    updateTotalPrice();
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                quantityInput.value = value + 1;
+                currentQuantity = value + 1;
+                updateTotalPrice();
+            });
+            
+            // التحقق من صحة الكمية وتحديث السعر
+            quantityInput.addEventListener('change', function() {
+                let value = parseInt(this.value);
+                if (isNaN(value) || value < 1) {
+                    this.value = 1;
+                    value = 1;
+                }
+                currentQuantity = value;
+                updateTotalPrice();
+            });
+            
+            // إضافة إلى السلة
+            addToCartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // إنشاء عنصر المنتج
+                const product = {
+                    id: Date.now(),
+                    name: 'هودي Brooklyn الكلاسيكي',
+                    color: currentColor.name,
+                    size: currentSize,
+                    quantity: currentQuantity,
+                    price: fixedPrice,
+                    image: currentColor.thumbnail
+                };
+                
+                // الحصول على السلة الحالية من localStorage
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                // إضافة المنتج إلى السلة
+                cart.push(product);
+                
+                // حفظ السلة في localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // تحديث عداد السلة
+                updateCartCount();
+                
+                // إشعار للمستخدم
+                alert('تمت إضافة المنتج إلى سلة التسوق!');
+                
+                // توجيه المستخدم إلى صفحة السلة
+                window.location.href = 'cart.html';
+            });
+            
+            // دالة لتحديث السعر الإجمالي
+            function updateTotalPrice() {
+                const totalPrice = fixedPrice * currentQuantity;
+                totalPriceElement.textContent = totalPrice;
+            }
+            
+            // دالة لتحديث عداد السلة
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartCount.textContent = cart.length;
+            }
+            
+            // إنشاء الصور المصغرة الأولية
+            createColorThumbnails();
+            
+            // تحديث السعر الإجمالي عند التحميل
+            updateTotalPrice();
+            
+            // تحديث عداد السلة عند التحميل
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
